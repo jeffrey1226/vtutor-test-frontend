@@ -32,7 +32,7 @@ const UserForm = (props) => {
   const createUser = async (values) => {
     onLoading(true)
 
-    let URL = `/user`;
+    let URL = `/${process.env.REACT_APP_STAGE}/user`;
     let response = null;
     try {
       response = await axios.post(URL, values);
@@ -50,7 +50,7 @@ const UserForm = (props) => {
   const updateUser = async (values) => {
     onLoading(true);
 
-    let URL = `/user/${user.id}`;
+    let URL = `/${process.env.REACT_APP_STAGE}/user/${user.id}`;
     let response = null;
     try {
       response = await axios.put(URL, values);

@@ -47,7 +47,7 @@ const Users = () => {
 
   const downloadUsers = async () => {
     setLoading(true);
-    let URL = `/user`;
+    let URL = `/${process.env.REACT_APP_STAGE}/user`;
     try {
       const response = await axios.get(URL);
       if (response.status === 200) {
@@ -93,7 +93,7 @@ const Users = () => {
 
   const handleDeleteUser = async () => {
     setLoading(true);
-    let URL = `/user/${selectedUser.id}`;
+    let URL = `/${process.env.REACT_APP_STAGE}/user/${selectedUser.id}`;
     try {
       const response = await axios.delete(URL);
       if (response.status === 200) {
@@ -115,7 +115,7 @@ const Users = () => {
     const diff = Math.floor((now - timestamp) / 1000);
     const diffMin = Math.floor(diff / 60);
     if (diffMin < 60) {
-      return `Created ${diffMin} minutes ago`;
+      return `Created ${diffMin < 0 ? 0 : diffMin} minutes ago`;
     }
     const diffHour = Math.floor(diffMin / 60);
     if (diffHour < 60) {
